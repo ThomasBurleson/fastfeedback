@@ -1,7 +1,7 @@
-import Head from 'next/head';
-
 import { useAuth } from '../data-access';
 import { AuthenticateUser } from './auth';
+
+const URL_LOGO_APP = '/ameriprise.svg'; //"https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg";
 
 const Home = () => {
   const { user, signInWithGithub, signOut } = useAuth();
@@ -9,14 +9,12 @@ const Home = () => {
   return (
     <div className="container">
       <main>
-        <img
-          className="mx-auto h-12 w-auto mb-8"
-          src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-          alt="Logiin"
-        />
-        <h1 className="title">
-          Developer Learning <span className="font-medium text-2xl">Portal </span>
-        </h1>
+        <div className="mx-auto w-full">
+          <img className="h-12 w-auto" src={URL_LOGO_APP} alt="Login" />
+        </div>
+
+        <h1 className="title">Developer Learning </h1>
+        <h3 className="font-medium text-2xl text-right w-full pr-2 text-gray-500"> Portal </h3>
 
         <AuthenticateUser />
       </main>
