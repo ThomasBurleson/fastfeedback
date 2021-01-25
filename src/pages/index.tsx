@@ -1,11 +1,9 @@
-import { useAuth } from '../data-access';
-import { AuthenticateUser } from './auth';
+import { ProtectedPage } from '@mdlp/ui';
+import { Account } from './account';
 
 const URL_LOGO_APP = '/ameriprise.svg'; //"https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg";
 
 const Home = () => {
-  const { user, signInWithGithub, signOut } = useAuth();
-
   return (
     <div className="container">
       <main>
@@ -14,9 +12,11 @@ const Home = () => {
         </div>
 
         <h1 className="title">Developer Learning </h1>
-        <h3 className="font-medium text-2xl text-right w-full pr-2 text-gray-500"> Portal </h3>
+        <h3 className="font-medium text-2xl text-right w-full pr-2 text-gray-500 mb-14"> Portal </h3>
 
-        <AuthenticateUser />
+        <ProtectedPage>
+          <Account />
+        </ProtectedPage>
       </main>
 
       <footer>
@@ -32,7 +32,7 @@ const Home = () => {
       <style jsx>{`
         .container {
           min-height: 100vh;
-          padding: 0 0.5rem;
+          padding: 0 0.1rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -44,7 +44,7 @@ const Home = () => {
           flex: 1;
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          justify-content: start;
           align-items: center;
         }
 

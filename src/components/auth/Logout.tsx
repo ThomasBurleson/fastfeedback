@@ -13,12 +13,12 @@ export const LogoutForm: React.FC<LogoutProps> = ({ user, onSignOut }) => {
           <div className="flex items-center space-x-4 lg:space-x-6">
             <img
               className="w-16 h-16 rounded-full lg:w-20 lg:h-20 inline-block mr-4"
-              src={user.photoURL}
-              alt={`Photo ${user.displayName}`}
+              src={user?.photoURL}
+              alt={`Photo ${user?.displayName}`}
             />
             <div className="font-medium text-lg leading-6 space-y-1">
               <h3>{user?.displayName}</h3>
-              <p className="text-sm text-gray-500">{user.email}</p>
+              <p className="text-sm text-gray-500">{user?.email}</p>
             </div>
           </div>
 

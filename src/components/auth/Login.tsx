@@ -1,4 +1,4 @@
-import { AuthInfo, User } from '../../data-access/auth/auth';
+import { AuthInfo } from '@mdlp/data-access';
 
 export interface LoginProps {
   auth: AuthInfo;

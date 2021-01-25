@@ -1,38 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Write your own custom base styles here */
-
-/* Start purging... */
-/* @tailwind components; */
-/* Stop purging. */
-
-html,
-body {
-  /* @apply bg-gray-50 dark:bg-gray-900; */
-}
-
-/* Write your own custom component styles here */
-.btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
-}
-
-.btn-green {
-  @apply px-4 py-2 font-bold text-white bg-green-200 rounded;
-}
-
-/* Start purging... */
-/* @tailwind utilities; */
-/* Stop purging. */
-
-/* Your own custom utilities */
 /* Absolute Center Spinner */
 .loading {
-  /* position: fixed; */
+  position: fixed;
   z-index: 999;
-  /* height: 2em; */
-  /* width: 2em; */
+  height: 2em;
+  width: 2em;
   overflow: visible;
   margin: auto;
   top: 0;
