@@ -1,3 +1,4 @@
+import React from 'react';
 import { User } from '@mdlp/data-access';
 
 export interface LogoutProps {
@@ -5,7 +6,7 @@ export interface LogoutProps {
   onSignOut: () => void;
 }
 
-export const LogoutForm: React.FC<LogoutProps> = ({ user, onSignOut }) => {
+export const LogoutForm: React.FC<LogoutProps> = React.memo(({ user, onSignOut }) => {
   return (
     <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -37,4 +38,4 @@ export const LogoutForm: React.FC<LogoutProps> = ({ user, onSignOut }) => {
       </div>
     </div>
   );
-};
+});

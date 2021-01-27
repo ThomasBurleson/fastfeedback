@@ -176,3 +176,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.registerEmail {
+  min-width: 409px;
+}

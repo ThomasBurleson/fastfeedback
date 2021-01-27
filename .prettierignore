@@ -1,3 +1,4 @@
 src/data-access/auth/auth.tsx
 src/pages/auth.tsx
 src/components/auth/ProtectedRoute.tsx
+src/pages/login.tsx

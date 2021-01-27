@@ -8,6 +8,15 @@ module.exports = {
       colors,
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+      },
+      minWidth: {
+        0: '0',
+        25: '25%',
+        33: '33%',
+        50: '50%',
+        66: '66%',
+        75: '75%',
+        100: '100%'
       }
     }
   },

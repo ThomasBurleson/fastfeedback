@@ -1,3 +1,4 @@
 export * from './Login';
-export * from './Logout';
 export * from './ProtectedPage';
+
+export * from './_Logout'; // only public for the /pages/account test page...

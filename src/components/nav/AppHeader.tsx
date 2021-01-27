@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@mdlp/data-access';
+import Link from 'next/link';
 
 export const AppHeader: React.FC<{}> = ({}) => {
   const { user, isAuthenticated, signOut } = useAuth();
@@ -20,33 +21,31 @@ export const AppHeader: React.FC<{}> = ({}) => {
           <div className="flex justify-between h-16">
             <div className="flex px-2 lg:px-0">
               <div className="flex-shrink-0 flex items-center mr-4">
-                <img className="h-8 w-auto" src="/ameriprise.svg" alt="Ameriprise Developer Learning Portal" />
+                <Link href="/">
+                  <img className="h-8 w-auto" src="/ameriprise.svg" alt="Ameriprise Developer Learning Portal" />
+                </Link>
               </div>
               <div className="hidden lg:ml-6 lg:flex lg:space-x-8">
-                <a
-                  href="/dashboard"
-                  className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  Dashboard
-                </a>
-                <a
-                  href="/teams"
-                  className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  Teams
-                </a>
-                <a
-                  href="/calendar"
-                  className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  Library
-                </a>
-                <a
-                  href="/calendar"
-                  className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  Calendar
-                </a>
+                <Link href="/dashboard">
+                  <a className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Dashboard
+                  </a>
+                </Link>
+                <Link href="/teams">
+                  <a className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Teams
+                  </a>
+                </Link>
+                <Link href="/calendar">
+                  <a className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Library
+                  </a>
+                </Link>
+                <Link href="/calendar">
+                  <a className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+                    Calendar
+                  </a>
+                </Link>
               </div>
             </div>
             <div className="flex-1 flex items-center justify-center px-2 lg:ml-6 lg:justify-end">
@@ -155,12 +154,16 @@ export const AppHeader: React.FC<{}> = ({}) => {
                     aria-labelledby="user-menu"
                     onClick={() => setMenuOpen(false)}
                   >
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-100" role="menuitem">
-                      Your Profile
-                    </a>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-100" role="menuitem">
-                      Settings
-                    </a>
+                    <Link href="/profile">
+                      <a className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-100" role="menuitem">
+                        Your Profile
+                      </a>
+                    </Link>
+                    <Link href="/settings">
+                      <a className="block px-4 py-2 text-sm text-gray-400 hover:bg-gray-100" role="menuitem">
+                        Settings
+                      </a>
+                    </Link>
                     <a
                       onClick={() => signOut()}
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
