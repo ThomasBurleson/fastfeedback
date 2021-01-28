@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '@mdlp/data-access';
 
 export interface ResendPasswordProps {

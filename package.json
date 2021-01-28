@@ -12,6 +12,8 @@
     "@tailwindcss/forms": "^0.2.1",
     "@types/react": "^17.0.0",
     "firebase": "^8.2.3",
+    "formik": "^2.2.6",
+    "framer-motion": "^3.2.2-rc.1",
     "next": "^10.0.5",
     "next-auth": "^3.1.0",
     "next-connect": "^0.9.1",

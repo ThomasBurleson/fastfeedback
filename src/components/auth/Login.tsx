@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { AuthInfo } from '@mdlp/data-access';
 
-import { EmailLogin } from './_EmailLogin';
-import { SocialLogin } from './_SocialLogin';
-import { RegisterEmail } from './_RegisterEmail';
-import { ResendPassword } from './_ResendPassword';
+import { EmailLogin } from './forms/_EmailLogin';
+import { SocialLogin } from './forms/_SocialLogin';
+import { RegisterEmail } from './forms/_RegisterEmail';
+import { ResendPassword } from './forms/_ResendPassword';
 
 enum LoginType {
   LOGIN_EXISTING,
