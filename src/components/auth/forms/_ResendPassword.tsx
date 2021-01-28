@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-import { pageSlide, delayedFadeIn } from '@mdlp/motion';
-import { useAuth } from '@mdlp/data-access';
+import { animateWith, delayedFadeIn } from '@mdlp/motion';
+import { useAuth } from 'shared/data-access';
 
 export interface ResendPasswordProps {
   email?: string;
@@ -32,8 +32,8 @@ export const ResendPassword: React.FC<ResendPasswordProps> = React.memo((props) 
   };
 
   return (
-    <motion.div {...pageSlide(0, 20)}>
-      <div className="absolute mb-10 top-0 right-0 text-gray-500  cursor-pointer" onClick={props.onClose}>
+    <motion.div {...animateWith()}>
+      <div className="absolute top-0 right-0 text-gray-500  cursor-pointer" onClick={props.onClose}>
         <motion.img variants={delayedFadeIn} className="h-8 w-auto" src="/close_btn.svg" alt="Close dialog" />
       </div>
       <form className="space-y-2 mt-6" action="#" method="POST">

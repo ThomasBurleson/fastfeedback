@@ -1,14 +1,14 @@
-import { useAuth, Error } from '@mdlp/data-access';
+import { useAuth, Error } from 'shared/data-access';
 import { LoginForm, LogoutForm } from '@mdlp/ui';
 
 export const AuthenticateUser: React.FC<{}> = ({}) => {
   const auth = useAuth();
-  const {user, error} = auth;
+  const {user, error, isAuthenticated} = auth;
   return (
     <div className="login">{
-      !!error    ? <LoginError error={error} />  :
-      !user?.uid ? <LoginForm  auth={auth} />    : 
-                   <LogoutForm user={user} onSignOut={() => auth.signOut()} />
+      !!error          ? <LoginError error={error} />  :
+      !isAuthenticated ? <LoginForm  redirectUrl="/account"/>    : 
+                         <LogoutForm user={user} onSignOut={() => auth.signOut()} />
     }</div>
   );
 };

@@ -21,7 +21,7 @@
     "skipDefaultLibCheck": true,
     "target": "es2015",
     "paths": {
-      "@mdlp/data-access": ["data-access/index.ts"],
+      "@mdlp/data-access": ["shared/data-access/index.ts"],
       "@mdlp/ui": ["components/index.ts"],
       "@mdlp/motion": ["shared/motion/index.ts"]
     }

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useFormik } from 'formik';
-import { useAuth } from '@mdlp/data-access';
+import { useAuth } from 'shared/data-access';
 
 import { FORM_STYLES as fs, isValidEmail } from '../utils/emailLogin.utils';
 

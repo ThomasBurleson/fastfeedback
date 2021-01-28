@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useAuth } from '@mdlp/data-access';
+import { useAuth } from 'shared/data-access';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const AppHeader: React.FC<{}> = ({}) => {
   const { user, isAuthenticated, signOut } = useAuth();

@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 
 import { animateWith } from '@mdlp/motion';
-import { useAuth } from '@mdlp/data-access';
+import { useAuth } from 'shared/data-access';
 
 import { FORM_STYLES as fs, isValidEmail } from '../utils/emailLogin.utils';
 import { delayedFadeIn } from '../../../shared/motion/variants';

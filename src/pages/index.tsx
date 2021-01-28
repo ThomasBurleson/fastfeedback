@@ -1,5 +1,4 @@
-import { ProtectedPage } from '@mdlp/ui';
-import { Account } from './account';
+import { LoginForm, ProtectedPage } from '../components';
 
 const URL_LOGO_APP = '/ameriprise.svg'; //"https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg";
 
@@ -15,7 +14,7 @@ const Home = () => {
         <h3 className="font-medium text-2xl text-right w-full pr-2 text-gray-500 mb-14"> Portal </h3>
 
         <ProtectedPage>
-          <Account />
+          <h4>App Landing Page</h4>
         </ProtectedPage>
       </main>
 

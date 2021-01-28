@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '@mdlp/data-access';
+import { useAuth } from 'shared/data-access';
 
 export const SocialLogin: React.FC<{}> = React.memo(({}) => {
   const { user, ...auth } = useAuth();

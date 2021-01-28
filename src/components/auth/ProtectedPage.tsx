@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import { useAuth } from '@mdlp/data-access';
+import { useAuth } from 'shared/data-access';
 
 import { Loader } from '../loading/Loader';
 import { LoginForm } from './Login';
@@ -8,9 +8,8 @@ import { LoginForm } from './Login';
 type ProtectedPageProps = {};
 
 export const ProtectedPage: React.FC<ProtectedPageProps> = ({ children }) => {
-  const auth = useAuth();
-  const { isAuthenticated, isLoading } = auth;
+  const { isAuthenticated } = useAuth();
 
-  return <Fragment>{isLoading ? <Loader /> : !isAuthenticated ? <LoginForm auth={auth} /> : children}</Fragment>;
+  return <Fragment>{!isAuthenticated ? <LoginForm /> : children}</Fragment>;
 };
 export default ProtectedPage;
