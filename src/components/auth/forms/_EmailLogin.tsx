@@ -88,7 +88,7 @@ export const EmailLogin: React.FC<EmailLoginProps> = React.memo(({ onResendPassw
         </div>
 
         <div>
-          <button type="submit" disabled={formik.isSubmitting} className={fs.SUBMIT_BTN}>
+          <button type="submit" disabled={formik.isSubmitting} className={`${fs.SUBMIT_BTN} `}>
             Sign in
           </button>
           <p className="mt-4 text-xs text-red-600  pl-3" id="email-error">

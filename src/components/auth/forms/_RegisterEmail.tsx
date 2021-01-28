@@ -1,8 +1,12 @@
 import React, { useCallback } from 'react';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
+
+import { animateWith } from '@mdlp/motion';
 import { useAuth } from '@mdlp/data-access';
 
 import { FORM_STYLES as fs, isValidEmail } from '../utils/emailLogin.utils';
+import { delayedFadeIn } from '../../../shared/motion/variants';
 
 export interface RegisterEmailProps {
   onClose: () => void;
@@ -26,9 +30,9 @@ export const RegisterEmail: React.FC<RegisterEmailProps> = React.memo(({ onClose
   const hasError = useCallback((key) => formik.errors[key] && formik.touched[key], [formik]);
 
   return (
-    <>
-      <div className="absolute top-0 right-0 text-gray-500 cursor-pointer" onClick={onClose}>
-        <img className="h-8 w-auto" src="/close_btn.svg" alt="Close dialog" />
+    <motion.div {...animateWith()}>
+      <div className="absolute top-0 right-0  text-gray-500 cursor-pointer" onClick={onClose}>
+        <motion.img variants={delayedFadeIn} className="h-8 w-auto" src="/close_btn.svg" alt="Close dialog" />
       </div>
       <form className="space-y-2 mt-8" onSubmit={formik.handleSubmit}>
         <div>
@@ -90,6 +94,6 @@ export const RegisterEmail: React.FC<RegisterEmailProps> = React.memo(({ onClose
           </p>
         </div>
       </form>
-    </>
+    </motion.div>
   );
 });

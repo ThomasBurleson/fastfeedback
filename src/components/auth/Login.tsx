@@ -1,4 +1,7 @@
 import React, { useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
+
+import { animateWith } from '@mdlp/motion';
 import { AuthInfo } from '@mdlp/data-access';
 
 import { EmailLogin } from './forms/_EmailLogin';
@@ -63,7 +66,7 @@ export const LoginForm: React.FC<LoginProps> = ({ auth }) => {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="registerEmail relative bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 ">
           {showingLoginExisting && (
-            <>
+            <motion.div {...animateWith()}>
               <SocialLogin />
               <div className="mt-10 mb-8">
                 <div className="relative">
@@ -76,7 +79,7 @@ export const LoginForm: React.FC<LoginProps> = ({ auth }) => {
                 </div>
               </div>
               <EmailLogin onResendPassword={onResendPassword} />
-            </>
+            </motion.div>
           )}
           {showingRegisterNew && <RegisterEmail onClose={onCloseResend} />}
           {showingResendPassword && <ResendPassword onClose={onCloseResend} />}
