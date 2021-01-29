@@ -9,7 +9,7 @@ import { EmailLogin } from './forms/_EmailLogin';
 import { SocialLogin } from './forms/_SocialLogin';
 import { RegisterEmail } from './forms/_RegisterEmail';
 import { ResendPassword } from './forms/_ResendPassword';
-import Loader from '../loading/Loader';
+import Spinner from '../loading/Spinner';
 
 enum LoginType {
   LOGIN_EXISTING,
@@ -92,7 +92,7 @@ export const LoginForm: React.FC<LoginProps> = ({ redirectUrl = '' }) => {
             {showingRegisterNew && <RegisterEmail onClose={onCloseResend} />}
             {showingResendPassword && <ResendPassword onClose={onCloseResend} />}
           </div>
-          {isLoading && <Loader />}
+          {isLoading && <Spinner />}
         </div>
       </div>
     </Transition>

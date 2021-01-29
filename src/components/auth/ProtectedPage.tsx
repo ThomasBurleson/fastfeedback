@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import { useAuth } from 'shared/data-access';
 
-import { Loader } from '../loading/Loader';
+import { Spinner } from '../loading/Spinner';
 import { LoginForm } from './Login';
 
 type ProtectedPageProps = {};

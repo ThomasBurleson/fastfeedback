@@ -1,3 +1,3 @@
 export * from './auth';
-export * from './loading/Loader';
+export * from './loading/Spinner';
 export * from './nav/AppHeader';
