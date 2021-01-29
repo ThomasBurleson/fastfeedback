@@ -4,7 +4,7 @@ const URL_LOGO_APP = '/ameriprise.svg'; //"https://tailwindui.com/img/logos/work
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="container mx-auto max-w-7xl">
       <main>
         <div className="mx-auto w-full">
           <img className="h-12 w-auto" src={URL_LOGO_APP} alt="Login" />
