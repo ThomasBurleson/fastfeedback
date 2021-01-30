@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import { animateWith, delayedFadeIn } from '@mdlp/motion';
-import { useAuth } from 'shared/data-access';
+import { useAuth } from 'shared/auth-api';
 
 export interface ResendPasswordProps {
   email?: string;

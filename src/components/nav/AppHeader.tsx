@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from 'shared/data-access';
+import { useAuth } from 'shared/auth-api';
 import Link from 'next/link';
 import Image from 'next/image';
 

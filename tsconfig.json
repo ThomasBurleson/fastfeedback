@@ -21,7 +21,8 @@
     "skipDefaultLibCheck": true,
     "target": "es2015",
     "paths": {
-      "@mdlp/data-access": ["shared/data-access/index.ts"],
+      "@mdlp/auth-api": ["shared/auth-api/index.ts"],
+      "@mdlp/auth-ui": ["shared/auth-ui/index.ts"],
       "@mdlp/ui": ["components/index.ts"],
       "@mdlp/motion": ["shared/motion/index.ts"]
     }

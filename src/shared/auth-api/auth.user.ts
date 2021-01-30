@@ -1,4 +1,4 @@
-import { firebase } from '../firebase';
+import { default as firebase } from './_firebase';
 
 const store = firebase.firestore();
 

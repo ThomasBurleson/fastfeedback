@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from 'shared/data-access';
+import { User } from 'shared/auth-api';
 
 export interface LogoutProps {
   user: User;

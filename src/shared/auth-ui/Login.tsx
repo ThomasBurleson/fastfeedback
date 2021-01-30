@@ -3,13 +3,13 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 
 import { animateWith, Transition } from '@mdlp/motion';
-import { useAuth } from 'shared/data-access';
+import { useAuth } from 'shared/auth-api';
 
 import { EmailLogin } from './forms/_EmailLogin';
 import { SocialLogin } from './forms/_SocialLogin';
 import { RegisterEmail } from './forms/_RegisterEmail';
 import { ResendPassword } from './forms/_ResendPassword';
-import Spinner from '../loading/Spinner';
+import Spinner from './components/Spinner';
 
 enum LoginType {
   LOGIN_EXISTING,

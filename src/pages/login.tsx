@@ -1,5 +1,5 @@
-import { useAuth, Error } from 'shared/data-access';
-import { LoginForm, LogoutForm } from '@mdlp/ui';
+import { useAuth, Error } from '@mdlp/auth-api';
+import { LoginForm, LogoutForm } from '@mdlp/auth-ui';
 
 export const AuthenticateUser: React.FC<{}> = ({}) => {
   const auth = useAuth();

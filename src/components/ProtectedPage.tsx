@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-import { useAuth } from 'shared/data-access';
+import { useAuth } from '@mdlp/auth-api';
+import { LoginForm } from '@mdlp/auth-ui';
 
 import { Spinner } from '../loading/Spinner';
-import { LoginForm } from './Login';
 
 type ProtectedPageProps = {};
 
