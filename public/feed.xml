@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title><![CDATA[Fast Feedback]]></title>
+        <description><![CDATA[Fast Feedback]]></description>
+        <link>https://fastfeedback.vercel.app</link>
+        <generator>RSS for Node</generator>
+        <lastBuildDate>Sat, 30 Jan 2021 22:17:57 GMT</lastBuildDate>
+        <atom:link href="https://fastfeedback.vercel.app/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Git - Top 10 Rules]]></title>
+            <link>https://fastfeedback.vercel.app/guides/git-top-10-rules</link>
+            <guid isPermaLink="true">https://fastfeedback.vercel.app/guides/git-top-10-rules</guid>
+        </item>
+    </channel>
+</rss>

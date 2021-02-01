@@ -1,0 +1,140 @@
+---
+lang: en
+title: Git Appendix - Commit Conventions
+tags: git, commit, message, guidelines, conventions
+description:
+---
+
+### <a name="commit"></a> Commit Message Conventions
+
+We have very precise rules over how our git commit messages can be formatted. This leads to **more readable messages** that are easy to follow when looking through the **project history**.
+
+:::danger
+To enforce _commit conventions_, the following tooling will be used:
+
+- [Husky Pre-commit Hooks](https://github.com/typicode/husky), and
+- [Commitizen CLI](https://github.com/commitizen/cz-cli)
+
+Watch the Egghead [Video: Using Commitizen](https://egghead.io/lessons/javascript-writing-conventional-commits-with-commitizen) for details.
+:::
+
+#### Commit Message Format
+
+```xml
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+Each commit message consists of a **header**, a **body** and a **footer**.
+
+- The header has a special format that includes a **type**, a **scope** and a **subject**. The **header** is mandatory and the **scope** of the header is optional.
+- The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
+
+<br>
+
+![](https://i.imgur.com/Oofm4gu.png)
+
+Any line of the commit message cannot be longer 100 characters! This allows the message to be easier to read on GitHub as well as in various git tools.
+
+:::success
+:tada: We use the git commit messages to generate **release notes**: [CHANGELOG.md](https://github.com/angular/flex-layout/blob/master/CHANGELOG.md)
+:::
+
+<br>
+
+#### Message Parts
+
+```xml
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+<br>
+
+##### `<Type>`
+
+Must be one of the following:
+
+| Option       |     | Description                                                                                            |
+| ------------ | --- | ------------------------------------------------------------------------------------------------------ |
+| **build**    | 💎  | Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)    |
+| **ci**       | 🙌  | Changes to our CI configuration files and scripts (example scopes: Circle, BrowserStack, SauceLabs)    |
+| **docs**     | 📚  | Documentation only changes                                                                             |
+| **feat**     | 🎉  | A new feature                                                                                          |
+| **fix**      | 🦂  | A bug fix                                                                                              |
+| **perf**     | ⏳  | A code change that improves performance                                                                |
+| **refactor** |     | A code change that neither fixes a bug nor adds a feature                                              |
+| **style**    |     | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) |
+| **test**     |     | Adding missing tests or correcting existing tests                                                      |
+
+<br>
+
+##### `<Scope>`
+
+The scope should be the name of the npm package affected (as perceived by the person reading the changelog generated from commit messages).
+
+The following is the list of supported scopes for this _use package name_ rule:
+
+|                  |                    |                      |
+| ---------------- | ------------------ | -------------------- |
+| **animations**   | **css**            | **ui**               |
+| **common**       | **shared**         | **core**             |
+| **dataservices** | **forms**          | **http**             |
+| **router**       | **service-worker** | **state-management** |
+
+There are currently a few exceptions to the _use package name_ rule:
+
+- **packaging**: used for changes that change the npm package layout in all of our packages,
+  - e.g. public path changes,
+  - package.json changes done to all packages,
+  - d.ts file/format changes,
+  - changes to bundles,
+  - etc.
+- **changelog**: used for updating the release notes in [CHANGELOG.md](https://github.com/angular/flex-layout/blob/master/CHANGELOG.md)[target=_blank]
+- **none/empty string**: useful for `style`, `test` and `refactor` changes that are done across all packages, and for docs changes that are not related to a specific package.
+  - `style: add missing semicolons`
+  - `docs: fix typo in tutorial`
+
+<br>
+
+##### `<Subject>`
+
+The subject contains a succinct description of the change:
+
+- use the imperative, present tense: "change" not "changed" nor "changes"
+- don't capitalize the first letter
+- no dot (.) at the end
+
+<br>
+
+##### `<Body>`
+
+Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
+The body should include the motivation for the change and contrast this with previous behavior.
+
+:::info
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message body is then used for this information.
+:::
+
+<br>
+
+##### `<Footer>`
+
+The footer should contain any information about **Breaking Changes** and is also the place to
+reference GitHub issues that this commit **Closes**.
+
+<br>
+
+---
+
+#### Revert
+
+If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+
+<br>

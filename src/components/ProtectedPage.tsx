@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import { useAuth } from '@mdlp/auth-api';
 import { LoginForm } from '@mdlp/auth-ui';
 
-import { Spinner } from '../loading/Spinner';
+import { Spinner } from './loading/Spinner';
 
 type ProtectedPageProps = {};
 

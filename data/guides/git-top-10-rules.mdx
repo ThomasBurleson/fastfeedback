@@ -1,0 +1,432 @@
+---
+title: Git - Top 10 Rules
+description: Top 10 Rules for Best Git Processes
+tags: git, best practices, 10 Rules
+lang: en
+---
+
+    <Image
+      src={`/static/images/git-top-10-rules/JcJo9n8.png`}
+      alt={``}
+      width={1064}
+      height={364}
+    />
+
+> Authors:
+>
+> - [Thomas Burleson](mailto:thomas.burleson@ampf.com), Solutions Architect
+> - [Harry Beckwith](mailto:harry.beckwith@ampf.com), Solutions Architect
+> - Copyright 2020 - All rights reserved
+
+<br>
+
+# Git: Top 10 Rules
+
+<br>
+
+    <Image
+      src={`/static/images/git-top-10-rules/D5Ypxex.png`}
+      alt={``}
+      width={1044}
+      height={123}
+    />
+
+<br>
+
+Using Git properly is essential for successful web-application development and CI/CD. The best practices for GitFlow have been codified and condensed into **10 Essential Rules**:
+
+1.  [Use **GitFlow** strategies](<#(1)-Use-GitFlow-Strategy>)
+2.  [Use **Locked** Branches](<#(2)-Use-Locked-Branches>)
+3.  [**Rebase** Often](<#(3)-Rebase-Often>)
+4.  [Use **Fast-Forward** Merge](<#(4)-Use-Fast-Forward-Merge>)
+5.  [Use Commit **Conventions**](<#(5)-Use-Commit-Conventions>)
+6.  [Use a **Code Review** process](<#(6)-Require-a-Code-Review-process>)
+7.  [Improve your **Log History**](<#(7)-Use-Rebase-for-Improved-Git-Logs>)
+8.  [Don't commit **Dependencies**](#8-Don%E2%80%99t-commit-Dependencies)
+9.  [Use **Prettier**](<#(9)-Use-Prettier>)
+10. [Use **README**(s)](<#(10)-Use-README(s)>)
+
+These ^ rules are sorted in highest priority and are detailed in the following sections.
+
+<br />
+
+:::info
+:bulb: **Hint:** Click a link above to speed-jump to the details for that rule.
+:::
+
+<br />
+
+## (1) Use GitFlow Strategy
+
+Unlike [Trunk-based Git](https://www.toptal.com/software/trunk-based-development-git-flow) development, the **Gitflow** workflow defines strict branching models designed around pull-requests and multi-team project releases.
+
+    <Image
+      src={`/static/images/git-top-10-rules/Hz1lZLd.png`}
+      alt={``}
+      width={2182}
+      height={1216}
+    />
+
+##### Main branches
+
+- `origin/master` is the main branch where the source code of HEAD always reflects the current _production-release_.
+
+- `origin/develop` is the main development branch where the source code of HEAD always reflects the latest integrated development changes; ready for the next QA release. Some would call this the “integration branch”.
+
+  > This is where any automatic nightly builds are built from.
+
+- `origin/release` is the QA branch used to perform acceptance, end-2-end testing, and other checks required before production release.
+
+When changes are merged back into `origin/master`, this is a _new production release_ by definition. This should be very strict process in which a Git hook script is used to **automatically build and roll-out to the production servers** everytime there is a commit on `origin/master`.
+
+Only by using Pull-Requests can code be committed to `origin/master`... and only from the `origin/release` or `origin/hotfixes` branches. The Git repository settings should require production-release-manager approval to merge PRs into master.
+
+##### Feature branches
+
+- `origin/feature/<xxx>` are the branches in which all sprint work is performed. Feature-work changes can only be merged into `origin/develop` with **Pull Requests**. Long-lived feature branches should follow rule [(3) Rebasing Often](<#(3)-Rebase-Often>).
+
+  - Automated CI will not triggered/performed on Feature branches.
+  - Automated CI tests will be triggered for all Pull Requests.
+  - Developers are not allowed to push commits direct to `origin/master`, `origin/develop`, or `origin/release`.
+
+:::warning
+:bulb: All developers should use the same repository for feature-based work. Developers should not fork the repository. While _Forking_ provides significant upstream repository-benefits, the _origin + upstream_ relationships complicates feature-based development.
+:::
+
+    <Image
+      src={`/static/images/git-top-10-rules/4PKB2Sf.png`}
+      alt={``}
+      width={1802}
+      height={750}
+    />
+
+<br />
+
+## (2) Use Locked Branches
+
+All developer sprint-work will be performed in the `origin/feature/<xxx>` branches (or `origin/hotfixes`). Only these two (2) branches will support direct-push commits.
+
+To enforce the **Merge by Pull-Request** process, the branches `master`, `develop`, and `release` should be locked to prevent direct push commits.
+
+    <Image
+      src={`/static/images/git-top-10-rules/dM8g82D.png`}
+      alt={``}
+      width={1108}
+      height={836}
+    />
+
+- All developer changes are restricted to `origin/feature/**` or `origin/hotfix/**`
+- Only `origin/feature/**` & `origin/hotfix/**` branches support direct commit pushes
+- All other branches require Pull Request processes to add commits (merges with squash, fast-forward)
+
+<br />
+
+## (3) Rebase Often
+
+Developers should **always** use `git pull --rebase origin <branch>` to insert all _origin_ changes below the timeline of their current changes.
+
+    <Image
+      src={`/static/images/git-top-10-rules/IXJ6FlX.png`}
+      alt={``}
+      width={1882}
+      height={1446}
+    />
+
+> Developers can also use `git rebase <with-source-branch>` to rebase with a local branch (instead of the remote `origin`).
+
+<br />
+
+For feature-based work, the local feature-branch should be rebased (a) _daily_ and (b) _before all updates_ to the `origin` PR branch.
+
+The following commands should be used:
+
+- `git pull --rebase origin develop` ...to update local code with origin changes.
+- `npm run build & npm test:affected & npm run lint` ...to confirm everything is still working.
+
+:::danger
+To reduce local development friction, teams may elect to merge all PRs with automated `rebase, squash, and fast-forward` merges. The negative impact of this automation will limit each PR to one (1) single commit. As such, this approach is not recommended.
+:::
+
+:::success
+Feature branches can rebase locally: **`git pull --rebase origin develop`**.
+:::
+
+#### Conflicts
+
+Rebasing will inevitably produce conflicts that must be resolved. This is especially true for branches with many "change" commits. To reduce conflict-friction, developers should **FIRST** squash their _new_ commits to 1..n logical commits.
+
+> If you do not want to customize the squash process then use `git pull --rebase --autosquash origin/<branch>`.
+
+Squashing your own commits should facilitate conflict resolution when a `git pull --rebase <branch>` is susbsequently used.
+
+---
+
+Since rebase rewrites the target branch SHA history _below_ your current branches changes... a `git push -f` will be required to update the remote `origin` branch.
+
+---
+
+#### Summary
+
+Rebasing ensures that your feature changes are based on ALL current `origin/develop` changes.
+
+- All Pull Requests should be rebased locally before pushing updates (to the PR branch).
+- After rebasing:
+  1.  Locally perform a full cycle of 'build, test, lint'
+  2.  Must use **`git push -f origin <branch>`** to force push your rebased changes.
+  3.  CI will auto-run the same when the associated PR is updated.
+
+<br>
+
+:::danger
+:fire: **Important**: Force pushing should **ONLY** be used for your PR branch.
+:::
+
+:::warning
+Full details: **[Pull-Request Best Practices]()** (pending)
+:::
+
+<br />
+
+## (4) Use Fast-Forward Merge
+
+Your Pull Request has been rebased, commits squashed, pushed to `origin`, and all CI tests and checks are passing. After code reviews, reviewer approvals and LGTMs... it is time to merge your PR to `origin/develop`.
+
+    <Image
+      src={`/static/images/git-top-10-rules/H5ghBdu.png`}
+      alt={``}
+      width={1442}
+      height={1120}
+    />
+
+A Fast-Forward merge will ensure that `origin/develop` retains a flat commit history... without any cluttering 3-way merge information. Because this FF-M strategy moves the PR branch's commits to the `origin/develop` branch, you'll still see all commits on the Commits page.
+
+> Using "Fast-Forward Merge" supports PRs with more than 1 commit. This is another reason for authors to properly squash their commits to a logic set.
+
+#### After the PR Merge...
+
+The repository settings should be set to auto-archive the `origin` branch associated with a merged PR. Developers should also perform the following three (3) steps to update their local repository branches:
+
+1.  Checkout the `develop` branch: **`git checkout develop -f`**
+2.  Update `develop` with the latest `origin` version: **`git pull --ff origin master`**
+3.  Delete the local PR branch: **`git branch -D <PR branch>`**
+
+<br />
+
+## (5) Use Commit Conventions
+
+#### Why are conformance to Commit Conventions critical?
+
+Development best practices use processes to auto-generate Release ChangeLogs from the commit history. And **commit conventions** are the key to ChangeLog auto-generations.
+
+e.g.
+
+    <Image
+      src={`/static/images/git-top-10-rules/6Aw1iGy.png`}
+      alt={``}
+      width={1702}
+      height={1934}
+    />
+
+Commit conventions promote _concise, contextual commit messages_ that are easy to scan in change logs and project history. Using commit conventions \[with squashing + rebasing], your Git Log history will be succinct and easy to manage.
+
+e.g.
+
+    <Image
+      src={`/static/images/git-top-10-rules/pRvFJfw.png`}
+      alt={``}
+      width={1418}
+      height={582}
+    />
+
+#### Commit Convention Details
+
+The recommed conventions follow Google's _Angular Guidelines_ regarding git commit message formats. Use the link below to jump to the Appendix section for full details:
+
+:::info
+:bulb: Full details: **[Commit Conventions](#-Commit-Message-Conventions)**
+:::
+
+<br />
+
+## (6) Require a Code Review process
+
+A proper code review insures quality and provides a great mentoring opportunity.
+
+Code changes are merged into `origin/develop` only with Pull Requests
+
+    <Image
+      src={`/static/images/git-top-10-rules/PKk7tWp.png`}
+      alt={``}
+      width={1178}
+      height={530}
+    />
+
+Before a code review is started, the PR should include:
+
+- An initial label `PR: Ready for Review`
+- A PR body has **clear description** (images optional)
+- A PR body with reference to **Jira issue** & other reference links.
+- Code rebased from `origin/develop`
+- Commits squashed to 1 or more logical commits
+- At least 1 person (2 preferred) requested to review
+- All CI processes passing: ( build, tests, e2e, lint )
+- Assign CodeOwners and require review sign-off on PRs
+
+All Pull Requests must have reviewer approval before a PR is ready for merge. PR Authors are **never allowed** to merge their own PRs.
+
+Reviewers should avoid subjective criticisms and attempt to provide all feedback in a single review pass. After Code Reviews, approvals and LGTMs, it is time to merge your PR to `origin/develop`.
+
+:::warning
+:bulb: Full details: **[Git Code Reviews]()**. (pending)
+:::
+
+<br />
+
+## (7) Improved Git Logs
+
+Developers want terminal tools to view log history in concise, compacted formats.
+
+With traditional **merge** or **pull** approaches, the Git timeline gets distorted and polluted with unwanted merge information. Repository log history can produce radically different outputs.
+
+```bash
+git lg    # show compact history
+```
+
+Here is project history for teams **NOT** following best practices:
+
+    <Image
+      src={`/static/images/git-top-10-rules/NX01Ffe.png`}
+      alt={``}
+      width={1400}
+      height={1028}
+    />
+
+Here the team is following bes practices: Rebasing, Squash, and Commit Conventions. These all work togehter to ensure the git history will be flat, clean, and concise.
+
+    <Image
+      src={`/static/images/git-top-10-rules/soicP2u.png`}
+      alt={``}
+      width={1105}
+      height={353}
+    />
+
+A flat timeline (eg commit history) is another important factor to the auto-generation of ChangeLogs. Notice how the use of [Commit Conventions](<#(7)-Use-Commit-Conventions>) helps create a clear, concise log history (above).
+
+:::info
+:bulb: Full details: [**Customizing your Git Log**](#Customized-Git-Logs)
+:::
+
+<br />
+
+## (8) Don't commit Dependencies
+
+Always use a `.gitignore` file to exclude specific artifacts for _source control management_.
+
+:::info
+:bulb: Full Details here: [**Recommended .gitIgnore Settings**](#-gitignore-Settings)
+:::
+
+<br>
+
+## (9) Use Prettier
+
+Use prettier to auto-format all files during save. Use _Prettier_ to minimize commit-change white noise.
+
+- Use **`nx format:write`** to format all files in project.
+- Enable **Format on Save** options in your IDE.
+
+Consistent use of Prettier will ensure your Pull Requests will only show diffs for content changes instead of style/format changes.
+
+##### `.prettierrc`
+
+```jsonld=
+{
+  "singleQuote": true,
+  "useTabs": false,
+  "printWidth": 120,
+  "tabWidth": 2
+}
+```
+
+:::warning
+:bulb: Jump to: [**Prettier Options**](https://prettier.io/docs/en/options.html)
+:::
+
+<br>
+
+## (10) Use README(s)
+
+A Repository will have at least one (1) `README.md`... but may contain others for specific folders or packages. The intent for each README is to convey information (and images if available) to show the purpose of the repository, package, or directoy.
+
+> Do not use the default, generated README.
+
+README documents should be hyperlinked to support easy navigation.
+
+    <Image
+      src={`/static/images/git-top-10-rules/5klO4el.png`}
+      alt={``}
+      width={1754}
+      height={1664}
+    />
+
+Badges should be used in the root project README to highlight version, CI status, and more
+
+    <Image
+      src={`/static/images/git-top-10-rules/TYFSOS1.png`}
+      alt={``}
+      width={2158}
+      height={594}
+    />
+
+<br>
+
+:::warning
+:bulb: Jump to: [**Badge Options**](https://img.shields.io).
+:::
+
+<br>
+
+<br>
+
+<br>
+
+# Appendix
+
+Within this appendix are details for various options and recommendations
+
+- [Customized Git Logs](#Customized-Git-Logs)
+- [Commit Message Conventions](#-Commit-Message-Conventions)
+- [Developer Tooling](#Developer-Tools)
+- [`.gitignore` settings](#-gitignore-Settings)
+
+<br>
+
+<a name="logs"></a>
+{%hackmd EARwWDYwSI2l-cL5twc46A %}
+
+<br />
+
+---
+
+<br>
+
+<a name="messages"></a>
+{%hackmd D6MoZKnERIKE8HX3eWwZMA?edit %}
+
+<br />
+
+---
+
+<br />
+
+<a name="tooling"></a>
+{%hackmd xCqAyP2DSTes3a-z41GwrQ %}
+
+<br />
+
+---
+
+<br>
+
+<a name="gitignore"></a>
+{%hackmd U4P5bPyBRLSBWnlKfLRe3w %}

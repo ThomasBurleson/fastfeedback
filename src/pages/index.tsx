@@ -1,6 +1,6 @@
-import { LoginForm, ProtectedPage } from '../components';
+import { ProtectedPage } from '../components';
 
-const URL_LOGO_APP = '/ameriprise.svg'; //"https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg";
+const URL_LOGO_APP = '/logos/ameriprise.svg'; //"https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg";
 
 const Home = () => {
   return (
@@ -24,7 +24,7 @@ const Home = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" />
+          Powered by <img src="/logos/vercel.svg" alt="Vercel Logo" />
         </a>
       </footer>
 

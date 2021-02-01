@@ -3,9 +3,11 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
+          <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+          <link href="/static/favicons/favicon.ico" rel="shortcut icon" />
+          <link href="/static/favicons/site.webmanifest" rel="manifest" />
         </Head>
         <body>
           <Main />

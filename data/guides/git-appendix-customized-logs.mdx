@@ -1,0 +1,147 @@
+---
+lang: en
+title: Git Appendix - Customized Logs
+tags: git, logs, terminal
+description: How to enhance Bash and `.gitconfig` for compact, colorized git logs
+---
+
+### Customized Git Logs
+
+Normal `git logs` commands will output a full log detail to the console:
+
+    <Image
+      src={`/static/images/git-appendix-customized-logs/foFNikr.png`}
+      alt={``}
+      width={2074}
+      height={950}
+    />
+
+Often developers want to see compacted, colorized log outputs. To generate the compact logs, use a custom `git lg` command.
+
+Developers should create a **git alias** in their git configuration file:
+
+#### `~/.gitconfig`
+
+```bash
+[alias]
+  plog = log --color --graph --pretty=format:'%C(red)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+```
+
+Developers can also specify a **bash** command `glog` for the Terminal:
+
+#### `~/.bashrc`
+
+```bash
+function glog() {
+  git plog
+}
+```
+
+Then in the terminal window, just type `log` to see the compacted git log output:
+
+    <Image
+      src={`/static/images/git-appendix-customized-logs/Z7uHhrg.png`}
+      alt={``}
+      width={1990}
+      height={644}
+    />
+
+<br>
+
+---
+
+<br>
+<br>
+
+### Customized Terminal Prompt
+
+To easily navigate your Git repositories from the terminal, let's modify the standard terminal prompt to show:
+
+- the Git branch, if the current working directory is a git repository
+- use a **red** color-code for the branch name, if the repo contains uncommitted changes
+
+##### Before
+
+    <Image
+      src={`/static/images/git-appendix-customized-logs/X7GqE8H.png`}
+      alt={``}
+      width={1004}
+      height={48}
+    />
+
+##### After
+
+    <Image
+      src={`/static/images/git-appendix-customized-logs/B0xydnC.png`}
+      alt={``}
+      width={1008}
+      height={48}
+    />
+
+
+
+    <Image
+      src={`/static/images/git-appendix-customized-logs/0bjijXi.png`}
+      alt={``}
+      width={1006}
+      height={44}
+    />
+
+<br>
+<br>
+
+Simply modify your Bash settings within the configuration `bashrc`:
+
+##### File: `~/.bashrc`
+
+```shell=
+# Text color variables
+txtUnd=$(tput sgr 0 1)          # Underline
+txtBold=$(tput bold)             # Bold
+bldred=${txtBold}$(tput setaf 1) #  red
+bldblue=${txtBold}$(tput setaf 4) #  blue
+bldwhite=${txtBold}$(tput setaf 7) #  white
+txtReset=$(tput sgr0)             # Reset
+c_red=`tput setaf 1`
+c_green=`tput setaf 2`
+c_yellow=`tput setaf 3`
+c_blue=`tput setaf 4`
+c_purple=`tput setaf 5`
+c_cyan=`tput setaf 6`
+c_white=`tput setaf 7`
+
+# Determine branch name if CWD is part of a git repository
+parse_git_branch ()
+{
+  if git rev-parse --git-dir >/dev/null 2>&1
+  then
+          gitver=$(git branch 2>/dev/null| sed -n '/^\*/s/^\* //p')
+  else
+          return 0
+  fi
+  echo -e $gitver
+}
+
+# Highlight branch name in `red` color if the repo contains uncommitted changes
+branch_color ()
+{
+        if git rev-parse --git-dir >/dev/null 2>&1
+        then
+                color=""
+                if git diff --quiet 2>/dev/null >&2
+                then
+                        color="${c_green}"
+                else
+                        color=${c_red}
+                fi
+        else
+                return 0
+        fi
+        echo -ne $color
+}
+
+# Update command prompt to show `<cwd> [<git branch name>]`
+PS1='\[${c_green}\]\W\[${txtReset}\] [\[$(branch_color)\]$(parse_git_branch)\[${txtReset}\]]: '
+```
+
+> Don't forget to run `source ~/.bashrc` so you can see these changes in your terminal.

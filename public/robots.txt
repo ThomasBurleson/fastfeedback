@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://dlp.mindspace.io/sitemap.xml

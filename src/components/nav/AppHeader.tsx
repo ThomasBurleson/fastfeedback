@@ -23,7 +23,7 @@ export const AppHeader: React.FC<{}> = ({}) => {
             <div className="flex px-2 lg:px-0">
               <div className="flex-shrink-0 flex items-center mr-4">
                 <Link href="/">
-                  <img className="h-8 w-auto" src="/ameriprise.svg" alt="Ameriprise Developer Learning Portal" />
+                  <img className="h-8 w-auto" src="/logos/ameriprise.svg" alt="Ameriprise Developer Learning Portal" />
                 </Link>
               </div>
               <div className="hidden lg:ml-6 lg:flex lg:space-x-8">

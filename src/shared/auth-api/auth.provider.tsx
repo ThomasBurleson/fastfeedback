@@ -8,7 +8,7 @@ const NOOP = () => {};
  * Create a context instance
  * NOTE: exported ONLY for lookup use in `auth.hook::useAuth()` hook
  */
-export const authContext = createContext<AuthInfo>({
+export const AuthenticationContext = createContext<AuthInfo>({
   user: null,
   error: null,
   status: AUTH_STATE.LOADING,
@@ -35,5 +35,5 @@ export const authContext = createContext<AuthInfo>({
  */
 export const AuthProvider: React.FC = ({ children }) => {
   const auth = useProvideAuth();
-  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+  return <AuthenticationContext.Provider value={auth}>{children}</AuthenticationContext.Provider>;
 };

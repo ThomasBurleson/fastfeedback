@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import firebase from 'firebase';
 import { saveUser } from './auth.user';
 
-import { authContext } from './auth.provider';
+import { AuthenticationContext } from './auth.provider';
 import { getDefaultAvatar } from './auth.constants';
 import { AuthInfo, User, Error, AUTH_STATE } from './auth.interfaces';
 
@@ -158,5 +158,5 @@ export function useProvideAuth(): AuthInfo {
  * NOTE: must be called from a tree child of the AuthProvider component
  */
 export const useAuth = (): AuthInfo => {
-  return useContext(authContext);
+  return useContext(AuthenticationContext);
 };

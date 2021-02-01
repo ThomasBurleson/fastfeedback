@@ -1,6 +1,7 @@
-import '../styles/index.css';
+import '@mdlp/styles';
 
-import { AuthProvider } from '../shared/auth-api';
+import { MDXProvider } from '@mdx-js/react';
+import { AuthProvider } from '@mdlp/auth-api';
 import { AppHeader } from '../components';
 
 function MyApp({ Component, pageProps, router }) {
@@ -8,7 +9,9 @@ function MyApp({ Component, pageProps, router }) {
     <AuthProvider>
       <AppHeader />
 
-      <Component {...pageProps} key={router.route} />
+      <MDXProvider>
+        <Component {...pageProps} key={router.route} />
+      </MDXProvider>
     </AuthProvider>
   );
 }
