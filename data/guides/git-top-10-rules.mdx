@@ -31,30 +31,42 @@ lang: en
       height={123}
     />
 
-<br>
+## Table of contents
 
-Using Git properly is essential for successful web-application development and CI/CD. The best practices for GitFlow have been codified and condensed into **10 Essential Rules**:
+- - [(1) Use GitFlow Strategy](#1-use-gitflow-strategy)
 
-1.  [Use **GitFlow** strategies](<#(1)-Use-GitFlow-Strategy>)
-2.  [Use **Locked** Branches](<#(2)-Use-Locked-Branches>)
-3.  [**Rebase** Often](<#(3)-Rebase-Often>)
-4.  [Use **Fast-Forward** Merge](<#(4)-Use-Fast-Forward-Merge>)
-5.  [Use Commit **Conventions**](<#(5)-Use-Commit-Conventions>)
-6.  [Use a **Code Review** process](<#(6)-Require-a-Code-Review-process>)
-7.  [Improve your **Log History**](<#(7)-Use-Rebase-for-Improved-Git-Logs>)
-8.  [Don't commit **Dependencies**](#8-Don%E2%80%99t-commit-Dependencies)
-9.  [Use **Prettier**](<#(9)-Use-Prettier>)
-10. [Use **README**(s)](<#(10)-Use-README(s)>)
+    - - - [Main branches](#main-branches)
+        - [Feature branches](#feature-branches)
 
-These ^ rules are sorted in highest priority and are detailed in the following sections.
+  - [(2) Use Locked Branches](#2-use-locked-branches)
 
-<br />
+  - [(3) Rebase Often](#3-rebase-often)
 
-:::info
-:bulb: **Hint:** Click a link above to speed-jump to the details for that rule.
-:::
+    - - [Conflicts](#conflicts)
+      - [Summary](#summary)
 
-<br />
+  - [(4) Use Fast-Forward Merge](#4-use-fast-forward-merge)
+
+    - - [After the PR Merge...](#after-the-pr-merge)
+
+  - [(5) Use Commit Conventions](#5-use-commit-conventions)
+
+    - - [Why are conformance to Commit Conventions critical?](#why-are-conformance-to-commit-conventions-critical)
+      - [Commit Convention Details](#commit-convention-details)
+
+  - [(6) Require a Code Review process](#6-require-a-code-review-process)
+
+  - [(7) Improved Git Logs](#7-improved-git-logs)
+
+  - [(8) Don't commit Dependencies](#8-dont-commit-dependencies)
+
+  - [(9) Use Prettier](#9-use-prettier)
+
+    - - - [`.prettierrc`](#prettierrc)
+
+  - [(10) Use README(s)](#10-use-readmes)
+
+- [Appendix](#appendix)
 
 ## (1) Use GitFlow Strategy
 

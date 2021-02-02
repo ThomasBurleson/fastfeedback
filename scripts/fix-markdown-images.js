@@ -3,6 +3,8 @@ const path = require('path');
 
 const unified = require('unified');
 const markdown = require('remark-parse');
+const remarkToc = require('remark-toc');
+const remarkSlug = require('remark-slug');
 const stringify = require('remark-stringify');
 const frontmatter = require('remark-frontmatter');
 const prettier = require('prettier');
@@ -81,6 +83,9 @@ async function downloadAllImages(filePath) {
  * and convert to NextJS image tags. Write a new markdown document to
  * the `destDir || srcDir` using the same source file name.
  *
+ * Note: if the markdown contains `## Table of contents`
+ * our transformer now adds TOC generation with anchor links
+ *
  * @param {*} mdFilePath
  * @param {*} srcDir
  * @param {*} destDir
@@ -90,7 +95,11 @@ async function makeNextImages(mdFilePath, srcDir, destDir) {
 
   const content = fs.readFileSync(mdFilePath);
   const convertUrl = urlToLocalStore(mdFilePath);
-  const transformer = unified().use(markdown).use(imgToJsx(convertUrl)).use(stringify).use(frontmatter, ['yaml']);
+  const transformer = unified()
+    .use([markdown, remarkToc, remarkSlug]) //
+    .use(imgToJsx(convertUrl))
+    .use(stringify)
+    .use(frontmatter, ['yaml']);
   const results = await transformer.process(content);
 
   const prettierConfig = await prettier.resolveConfig('./.prettierrc.js');
