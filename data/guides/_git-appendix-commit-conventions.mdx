@@ -33,14 +33,9 @@ Each commit message consists of a **header**, a **body** and a **footer**.
 - The header has a special format that includes a **type**, a **scope** and a **subject**. The **header** is mandatory and the **scope** of the header is optional.
 - The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
-<br>
+<br />
 
-    <Image
-      src={`/static/images/git-appendix-commit-conventions/Oofm4gu.png`}
-      alt={``}
-      width={1366}
-      height={514}
-    />
+<Image src={`/static/images/_git-appendix-commit-conventions/Oofm4gu.png`} alt={``} width={1366} height={514} />
 
 Any line of the commit message cannot be longer 100 characters! This allows the message to be easier to read on GitHub as well as in various git tools.
 
@@ -48,7 +43,7 @@ Any line of the commit message cannot be longer 100 characters! This allows the 
 :tada: We use the git commit messages to generate **release notes**: [CHANGELOG.md](https://github.com/angular/flex-layout/blob/master/CHANGELOG.md)
 :::
 
-<br>
+<br />
 
 #### Message Parts
 
@@ -60,7 +55,7 @@ Any line of the commit message cannot be longer 100 characters! This allows the 
 <footer>
 ```
 
-<br>
+<br />
 
 ##### `<Type>`
 
@@ -78,7 +73,7 @@ Must be one of the following:
 | **style**    |     | Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) |
 | **test**     |     | Adding missing tests or correcting existing tests                                                      |
 
-<br>
+<br />
 
 ##### `<Scope>`
 
@@ -106,7 +101,7 @@ There are currently a few exceptions to the _use package name_ rule:
   - `style: add missing semicolons`
   - `docs: fix typo in tutorial`
 
-<br>
+<br />
 
 ##### `<Subject>`
 
@@ -116,7 +111,7 @@ The subject contains a succinct description of the change:
 - don't capitalize the first letter
 - no dot (.) at the end
 
-<br>
+<br />
 
 ##### `<Body>`
 
@@ -127,14 +122,14 @@ The body should include the motivation for the change and contrast this with pre
 **Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message body is then used for this information.
 :::
 
-<br>
+<br />
 
 ##### `<Footer>`
 
 The footer should contain any information about **Breaking Changes** and is also the place to
 reference GitHub issues that this commit **Closes**.
 
-<br>
+<br />
 
 ---
 
@@ -142,4 +137,4 @@ reference GitHub issues that this commit **Closes**.
 
 If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
 
-<br>
+<br />

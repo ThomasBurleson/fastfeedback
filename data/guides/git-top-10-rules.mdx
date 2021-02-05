@@ -5,12 +5,7 @@ tags: git, best practices, 10 Rules
 lang: en
 ---
 
-    <Image
-      src={`/static/images/git-top-10-rules/JcJo9n8.png`}
-      alt={``}
-      width={1064}
-      height={364}
-    />
+<Image src={`/static/images/git-top-10-rules/JcJo9n8.png`} alt={``} width={1064} height={364} />
 
 > Authors:
 >
@@ -18,66 +13,44 @@ lang: en
 > - [Harry Beckwith](mailto:harry.beckwith@ampf.com), Solutions Architect
 > - Copyright 2020 - All rights reserved
 
-<br>
+<br />
 
 # Git: Top 10 Rules
 
-<br>
+<br />
 
-    <Image
-      src={`/static/images/git-top-10-rules/D5Ypxex.png`}
-      alt={``}
-      width={1044}
-      height={123}
-    />
+<Image src={`/static/images/git-top-10-rules/D5Ypxex.png`} alt={``} width={1044} height={123} />
 
-## Table of contents
+<br />
 
-- - [(1) Use GitFlow Strategy](#1-use-gitflow-strategy)
+Using Git properly is essential for successful web-application development and CI/CD. The best practices for GitFlow have been codified and condensed into **10 Essential Rules**:
 
-    - - - [Main branches](#main-branches)
-        - [Feature branches](#feature-branches)
+1.  [Use **GitFlow** strategies](#1-Use-GitFlow-Strategy)
+2.  [Use **Locked** Branches](#2-Use-Locked-Branches)
+3.  [**Rebase** Often](#3-rebase-often)
+4.  [Use **Fast-Forward** Merge](#4-Use-Fast-Forward-Merge)
+5.  [Use Commit **Conventions**](#5-Use-Commit-Conventions)
+6.  [Use a **Code Review** process](#6-Require-a-Code-Review-process)
+7.  [Improve your **Log History**](#7-Improved-Git-Logs)
+8.  [Don't commit **Dependencies**](#8-dont-commit-dependencies)
+9.  [Use **Prettier**](#9-Use-Prettier)
+10. [Use **README**(s)](#10-Use-README)
 
-  - [(2) Use Locked Branches](#2-use-locked-branches)
+These ^ rules are sorted in highest priority and are detailed in the following sections.
 
-  - [(3) Rebase Often](#3-rebase-often)
+<br />
 
-    - - [Conflicts](#conflicts)
-      - [Summary](#summary)
+:::info
+:bulb: **Hint:** Click a link above to speed-jump to the details for that rule.
+:::
 
-  - [(4) Use Fast-Forward Merge](#4-use-fast-forward-merge)
-
-    - - [After the PR Merge...](#after-the-pr-merge)
-
-  - [(5) Use Commit Conventions](#5-use-commit-conventions)
-
-    - - [Why are conformance to Commit Conventions critical?](#why-are-conformance-to-commit-conventions-critical)
-      - [Commit Convention Details](#commit-convention-details)
-
-  - [(6) Require a Code Review process](#6-require-a-code-review-process)
-
-  - [(7) Improved Git Logs](#7-improved-git-logs)
-
-  - [(8) Don't commit Dependencies](#8-dont-commit-dependencies)
-
-  - [(9) Use Prettier](#9-use-prettier)
-
-    - - - [`.prettierrc`](#prettierrc)
-
-  - [(10) Use README(s)](#10-use-readmes)
-
-- [Appendix](#appendix)
+<br />
 
 ## (1) Use GitFlow Strategy
 
 Unlike [Trunk-based Git](https://www.toptal.com/software/trunk-based-development-git-flow) development, the **Gitflow** workflow defines strict branching models designed around pull-requests and multi-team project releases.
 
-    <Image
-      src={`/static/images/git-top-10-rules/Hz1lZLd.png`}
-      alt={``}
-      width={2182}
-      height={1216}
-    />
+<Image src={`/static/images/git-top-10-rules/Hz1lZLd.png`} alt={``} width={2182} height={1216} />
 
 ##### Main branches
 
@@ -95,7 +68,7 @@ Only by using Pull-Requests can code be committed to `origin/master`... and only
 
 ##### Feature branches
 
-- `origin/feature/<xxx>` are the branches in which all sprint work is performed. Feature-work changes can only be merged into `origin/develop` with **Pull Requests**. Long-lived feature branches should follow rule [(3) Rebasing Often](<#(3)-Rebase-Often>).
+- `origin/feature/<xxx>` are the branches in which all sprint work is performed. Feature-work changes can only be merged into `origin/develop` with **Pull Requests**. Long-lived feature branches should follow rule [(3) Rebasing Often](#3-Rebase-Often).
 
   - Automated CI will not triggered/performed on Feature branches.
   - Automated CI tests will be triggered for all Pull Requests.
@@ -105,12 +78,7 @@ Only by using Pull-Requests can code be committed to `origin/master`... and only
 :bulb: All developers should use the same repository for feature-based work. Developers should not fork the repository. While _Forking_ provides significant upstream repository-benefits, the _origin + upstream_ relationships complicates feature-based development.
 :::
 
-    <Image
-      src={`/static/images/git-top-10-rules/4PKB2Sf.png`}
-      alt={``}
-      width={1802}
-      height={750}
-    />
+<Image src={`/static/images/git-top-10-rules/4PKB2Sf.png`} alt={``} width={1802} height={750} />
 
 <br />
 
@@ -120,12 +88,7 @@ All developer sprint-work will be performed in the `origin/feature/<xxx>` branch
 
 To enforce the **Merge by Pull-Request** process, the branches `master`, `develop`, and `release` should be locked to prevent direct push commits.
 
-    <Image
-      src={`/static/images/git-top-10-rules/dM8g82D.png`}
-      alt={``}
-      width={1108}
-      height={836}
-    />
+<Image src={`/static/images/git-top-10-rules/dM8g82D.png`} alt={``} width={1108} height={836} />
 
 - All developer changes are restricted to `origin/feature/**` or `origin/hotfix/**`
 - Only `origin/feature/**` & `origin/hotfix/**` branches support direct commit pushes
@@ -137,12 +100,7 @@ To enforce the **Merge by Pull-Request** process, the branches `master`, `develo
 
 Developers should **always** use `git pull --rebase origin <branch>` to insert all _origin_ changes below the timeline of their current changes.
 
-    <Image
-      src={`/static/images/git-top-10-rules/IXJ6FlX.png`}
-      alt={``}
-      width={1882}
-      height={1446}
-    />
+<Image src={`/static/images/git-top-10-rules/IXJ6FlX.png`} alt={``} width={1882} height={1446} />
 
 > Developers can also use `git rebase <with-source-branch>` to rebase with a local branch (instead of the remote `origin`).
 
@@ -187,7 +145,7 @@ Rebasing ensures that your feature changes are based on ALL current `origin/deve
   2.  Must use **`git push -f origin <branch>`** to force push your rebased changes.
   3.  CI will auto-run the same when the associated PR is updated.
 
-<br>
+<br />
 
 :::danger
 :fire: **Important**: Force pushing should **ONLY** be used for your PR branch.
@@ -203,12 +161,7 @@ Full details: **[Pull-Request Best Practices]()** (pending)
 
 Your Pull Request has been rebased, commits squashed, pushed to `origin`, and all CI tests and checks are passing. After code reviews, reviewer approvals and LGTMs... it is time to merge your PR to `origin/develop`.
 
-    <Image
-      src={`/static/images/git-top-10-rules/H5ghBdu.png`}
-      alt={``}
-      width={1442}
-      height={1120}
-    />
+<Image src={`/static/images/git-top-10-rules/H5ghBdu.png`} alt={``} width={1442} height={1120} />
 
 A Fast-Forward merge will ensure that `origin/develop` retains a flat commit history... without any cluttering 3-way merge information. Because this FF-M strategy moves the PR branch's commits to the `origin/develop` branch, you'll still see all commits on the Commits page.
 
@@ -232,30 +185,20 @@ Development best practices use processes to auto-generate Release ChangeLogs fro
 
 e.g.
 
-    <Image
-      src={`/static/images/git-top-10-rules/6Aw1iGy.png`}
-      alt={``}
-      width={1702}
-      height={1934}
-    />
+<Image src={`/static/images/git-top-10-rules/6Aw1iGy.png`} alt={``} width={1702} height={1934} />
 
 Commit conventions promote _concise, contextual commit messages_ that are easy to scan in change logs and project history. Using commit conventions \[with squashing + rebasing], your Git Log history will be succinct and easy to manage.
 
 e.g.
 
-    <Image
-      src={`/static/images/git-top-10-rules/pRvFJfw.png`}
-      alt={``}
-      width={1418}
-      height={582}
-    />
+<Image src={`/static/images/git-top-10-rules/pRvFJfw.png`} alt={``} width={1418} height={582} />
 
 #### Commit Convention Details
 
 The recommed conventions follow Google's _Angular Guidelines_ regarding git commit message formats. Use the link below to jump to the Appendix section for full details:
 
 :::info
-:bulb: Full details: **[Commit Conventions](#-Commit-Message-Conventions)**
+:bulb: Full details: **[Commit Conventions](#_git-appendix-commit-conventions.mdx)**
 :::
 
 <br />
@@ -266,12 +209,7 @@ A proper code review insures quality and provides a great mentoring opportunity.
 
 Code changes are merged into `origin/develop` only with Pull Requests
 
-    <Image
-      src={`/static/images/git-top-10-rules/PKk7tWp.png`}
-      alt={``}
-      width={1178}
-      height={530}
-    />
+<Image src={`/static/images/git-top-10-rules/PKk7tWp.png`} alt={``} width={1178} height={530} />
 
 Before a code review is started, the PR should include:
 
@@ -306,26 +244,16 @@ git lg    # show compact history
 
 Here is project history for teams **NOT** following best practices:
 
-    <Image
-      src={`/static/images/git-top-10-rules/NX01Ffe.png`}
-      alt={``}
-      width={1400}
-      height={1028}
-    />
+<Image src={`/static/images/git-top-10-rules/NX01Ffe.png`} alt={``} width={1400} height={1028} />
 
 Here the team is following bes practices: Rebasing, Squash, and Commit Conventions. These all work togehter to ensure the git history will be flat, clean, and concise.
 
-    <Image
-      src={`/static/images/git-top-10-rules/soicP2u.png`}
-      alt={``}
-      width={1105}
-      height={353}
-    />
+<Image src={`/static/images/git-top-10-rules/soicP2u.png`} alt={``} width={1105} height={353} />
 
-A flat timeline (eg commit history) is another important factor to the auto-generation of ChangeLogs. Notice how the use of [Commit Conventions](<#(7)-Use-Commit-Conventions>) helps create a clear, concise log history (above).
+A flat timeline (eg commit history) is another important factor to the auto-generation of ChangeLogs. Notice how the use of [Commit Conventions](#7-Use-Commit-Conventions) helps create a clear, concise log history (above).
 
 :::info
-:bulb: Full details: [**Customizing your Git Log**](#Customized-Git-Logs)
+:bulb: Full details: [**Customizing your Git Log**](#_git-appendix-customized-logs.mdx)
 :::
 
 <br />
@@ -335,10 +263,10 @@ A flat timeline (eg commit history) is another important factor to the auto-gene
 Always use a `.gitignore` file to exclude specific artifacts for _source control management_.
 
 :::info
-:bulb: Full Details here: [**Recommended .gitIgnore Settings**](#-gitignore-Settings)
+:bulb: Full Details here: \[**Recommended .gitIgnore Settings**]#\_git-appendix-gitignore-settings.mdx)
 :::
 
-<br>
+<br />
 
 ## (9) Use Prettier
 
@@ -351,7 +279,7 @@ Consistent use of Prettier will ensure your Pull Requests will only show diffs f
 
 ##### `.prettierrc`
 
-```jsonld=
+```json
 {
   "singleQuote": true,
   "useTabs": false,
@@ -364,9 +292,9 @@ Consistent use of Prettier will ensure your Pull Requests will only show diffs f
 :bulb: Jump to: [**Prettier Options**](https://prettier.io/docs/en/options.html)
 :::
 
-<br>
+<br />
 
-## (10) Use README(s)
+## (10) Use README
 
 A Repository will have at least one (1) `README.md`... but may contain others for specific folders or packages. The intent for each README is to convey information (and images if available) to show the purpose of the repository, package, or directoy.
 
@@ -374,71 +302,28 @@ A Repository will have at least one (1) `README.md`... but may contain others fo
 
 README documents should be hyperlinked to support easy navigation.
 
-    <Image
-      src={`/static/images/git-top-10-rules/5klO4el.png`}
-      alt={``}
-      width={1754}
-      height={1664}
-    />
+<Image src={`/static/images/git-top-10-rules/5klO4el.png`} alt={``} width={1754} height={1664} />
 
 Badges should be used in the root project README to highlight version, CI status, and more
 
-    <Image
-      src={`/static/images/git-top-10-rules/TYFSOS1.png`}
-      alt={``}
-      width={2158}
-      height={594}
-    />
+<Image src={`/static/images/git-top-10-rules/TYFSOS1.png`} alt={``} width={2158} height={594} />
 
-<br>
+<br />
 
 :::warning
 :bulb: Jump to: [**Badge Options**](https://img.shields.io).
 :::
 
-<br>
+<br />
 
-<br>
+<br />
 
-<br>
+<br />
 
 # Appendix
 
 Within this appendix are details for various options and recommendations
 
-- [Customized Git Logs](#Customized-Git-Logs)
-- [Commit Message Conventions](#-Commit-Message-Conventions)
-- [Developer Tooling](#Developer-Tools)
-- [`.gitignore` settings](#-gitignore-Settings)
-
-<br>
-
-<a name="logs"></a>
-{%hackmd EARwWDYwSI2l-cL5twc46A %}
-
-<br />
-
----
-
-<br>
-
-<a name="messages"></a>
-{%hackmd D6MoZKnERIKE8HX3eWwZMA?edit %}
-
-<br />
-
----
-
-<br />
-
-<a name="tooling"></a>
-{%hackmd xCqAyP2DSTes3a-z41GwrQ %}
-
-<br />
-
----
-
-<br>
-
-<a name="gitignore"></a>
-{%hackmd U4P5bPyBRLSBWnlKfLRe3w %}
+- [Customized Git Logs](./_git-appendix-customized-logs.mdx)
+- [Commit Message Conventions](./_git-appendix-commit-conventions.mdx)
+- [`.gitignore` settings](./_git-appendix-gitignore-settings.mdx)

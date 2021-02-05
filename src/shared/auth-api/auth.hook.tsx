@@ -51,11 +51,11 @@ export function useProvideAuth(): AuthInfo {
     return current;
   };
   const reportError = (error: Error) => {
-    console.error(error.message);
-
     setUser(null);
     setError(error);
     setAuthState(AUTH_STATE.ERROR);
+
+    console.error(error.message);
 
     return error;
   };

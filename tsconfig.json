@@ -25,6 +25,7 @@
       "@mdlp/auth-api": ["shared/auth-api/index.ts"],
       "@mdlp/auth-ui": ["shared/auth-ui/index.ts"],
       "@mdlp/layouts": ["shared/layouts/index.ts"],
+      "@mdlp/ssr": ["ssr/index.ts"],
       "@mdlp/ui": ["components/index.ts"],
       "@mdlp/motion": ["shared/motion/index.ts"]
     }

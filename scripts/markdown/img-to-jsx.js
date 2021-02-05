@@ -13,16 +13,9 @@ const convertToNextJSImage = (convertURL) => (node) => {
     const imageUrl = convertURL(imageNode.url); // optionally use alternate CDN location
     const localStoredImage = `${process.cwd()}/public${imageUrl}`;
 
-    const dimensions = sizeOf(localStoredImage);
+    const { height, width } = sizeOf(localStoredImage);
     imageNode.type = 'html';
-    imageNode.value = `
-    <Image
-      src={\`${imageUrl}\`}
-      alt={\`${imageNode.alt}\`}
-      width={${dimensions.width}}
-      height={${dimensions.height}}
-    />
-  `;
+    imageNode.value = `<Image src={\`${imageUrl}\`} alt={\`${imageNode.alt}\`} width={${width}} height={${height}} />`;
     node.children = [imageNode];
   }
 };

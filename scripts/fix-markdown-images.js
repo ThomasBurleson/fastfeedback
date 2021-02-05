@@ -112,5 +112,13 @@ async function makeNextImages(mdFilePath, srcDir, destDir) {
   const fullDestDir = path.join(process.cwd(), destDir);
 
   validateDirectory(fullDestDir, false);
-  fs.writeFileSync(`${fullDestDir}/${fileName}`, formatted);
+  fs.writeFileSync(`${fullDestDir}/${fileName}`, fixInvalidHTMLBreaks(formatted));
+}
+
+const HTML_BREAKS = /(\<[br\s/]+\>)/gim;
+/**
+ * FIX possible invalid Break (which require self closing tag)
+ */
+function fixInvalidHTMLBreaks(source) {
+  return source.replace(HTML_BREAKS, '<br />');
 }

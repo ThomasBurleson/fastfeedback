@@ -21,22 +21,20 @@ lang: en
 
 ![](https://i.imgur.com/D5Ypxex.png)
 
-## Table of contents
-
 <br>
 
 Using Git properly is essential for successful web-application development and CI/CD. The best practices for GitFlow have been codified and condensed into **10 Essential Rules**:
 
-1. [Use **GitFlow** strategies](<#(1)-Use-GitFlow-Strategy>)
-2. [Use **Locked** Branches](<#(2)-Use-Locked-Branches>)
-3. [**Rebase** Often](<#(3)-Rebase-Often>)
-4. [Use **Fast-Forward** Merge](<#(4)-Use-Fast-Forward-Merge>)
-5. [Use Commit **Conventions**](<#(5)-Use-Commit-Conventions>)
-6. [Use a **Code Review** process](<#(6)-Require-a-Code-Review-process>)
-7. [Improve your **Log History**](<#(7)-Use-Rebase-for-Improved-Git-Logs>)
+1. [Use **GitFlow** strategies](#1-Use-GitFlow-Strategy)
+2. [Use **Locked** Branches](#2-Use-Locked-Branches)
+3. [**Rebase** Often](#3-Rebase-Often)
+4. [Use **Fast-Forward** Merge](#4-Use-Fast-Forward-Merge)
+5. [Use Commit **Conventions**](#5-Use-Commit-Conventions)
+6. [Use a **Code Review** process](#6-Require-a-Code-Review-process)
+7. [Improve your **Log History**](#7-Use-Rebase-for-Improved-Git-Logs)
 8. [Don't commit **Dependencies**](#8-Don%E2%80%99t-commit-Dependencies)
-9. [Use **Prettier**](<#(9)-Use-Prettier>)
-10. [Use **README**(s)](<#(10)-Use-README(s)>)
+9. [Use **Prettier**](#9-Use-Prettier)
+10. [Use **README**(s)](#10-Use-README)
 
 These ^ rules are sorted in highest priority and are detailed in the following sections.
 
@@ -70,7 +68,7 @@ Only by using Pull-Requests can code be committed to `origin/master`... and only
 
 ##### Feature branches
 
-- `origin/feature/<xxx>` are the branches in which all sprint work is performed. Feature-work changes can only be merged into `origin/develop` with **Pull Requests**. Long-lived feature branches should follow rule [(3) Rebasing Often](<#(3)-Rebase-Often>).
+- `origin/feature/<xxx>` are the branches in which all sprint work is performed. Feature-work changes can only be merged into `origin/develop` with **Pull Requests**. Long-lived feature branches should follow rule [(3) Rebasing Often](#3-Rebase-Often).
 
   - Automated CI will not triggered/performed on Feature branches.
   - Automated CI tests will be triggered for all Pull Requests.
@@ -200,7 +198,7 @@ e.g.
 The recommed conventions follow Google's _Angular Guidelines_ regarding git commit message formats. Use the link below to jump to the Appendix section for full details:
 
 :::info
-:bulb: Full details: **[Commit Conventions](#-Commit-Message-Conventions)**
+:bulb: Full details: **[Commit Conventions](#_git-appendix-commit-conventions.mdx)**
 :::
 
 <br />
@@ -252,10 +250,10 @@ Here the team is following bes practices: Rebasing, Squash, and Commit Conventio
 
 ![](https://i.imgur.com/soicP2u.png)
 
-A flat timeline (eg commit history) is another important factor to the auto-generation of ChangeLogs. Notice how the use of [Commit Conventions](<#(7)-Use-Commit-Conventions>) helps create a clear, concise log history (above).
+A flat timeline (eg commit history) is another important factor to the auto-generation of ChangeLogs. Notice how the use of [Commit Conventions](#7-Use-Commit-Conventions) helps create a clear, concise log history (above).
 
 :::info
-:bulb: Full details: [**Customizing your Git Log**](#Customized-Git-Logs)
+:bulb: Full details: [**Customizing your Git Log**](#_git-appendix-customized-logs.mdx)
 :::
 
 <br />
@@ -265,7 +263,7 @@ A flat timeline (eg commit history) is another important factor to the auto-gene
 Always use a `.gitignore` file to exclude specific artifacts for _source control management_.
 
 :::info
-:bulb: Full Details here: [**Recommended .gitIgnore Settings**](#-gitignore-Settings)
+:bulb: Full Details here: [**Recommended .gitIgnore Settings**]#\_git-appendix-gitignore-settings.mdx)
 :::
 
 <br>
@@ -281,7 +279,7 @@ Consistent use of Prettier will ensure your Pull Requests will only show diffs f
 
 ##### `.prettierrc`
 
-```jsonld=
+```json
 {
   "singleQuote": true,
   "useTabs": false,
@@ -296,7 +294,7 @@ Consistent use of Prettier will ensure your Pull Requests will only show diffs f
 
 <br>
 
-## (10) Use README(s)
+## (10) Use README
 
 A Repository will have at least one (1) `README.md`... but may contain others for specific folders or packages. The intent for each README is to convey information (and images if available) to show the purpose of the repository, package, or directoy.
 
@@ -326,39 +324,6 @@ Badges should be used in the root project README to highlight version, CI status
 
 Within this appendix are details for various options and recommendations
 
-- [Customized Git Logs](#Customized-Git-Logs)
-- [Commit Message Conventions](#-Commit-Message-Conventions)
-- [Developer Tooling](#Developer-Tools)
-- [`.gitignore` settings](#-gitignore-Settings)
-
-<br>
-
-<a name="logs"></a>
-{%hackmd EARwWDYwSI2l-cL5twc46A %}
-
-<br />
-
----
-
-<br>
-
-<a name="messages"></a>
-{%hackmd D6MoZKnERIKE8HX3eWwZMA?edit %}
-
-<br />
-
----
-
-<br />
-
-<a name="tooling"></a>
-{%hackmd xCqAyP2DSTes3a-z41GwrQ %}
-
-<br />
-
----
-
-<br>
-
-<a name="gitignore"></a>
-{%hackmd U4P5bPyBRLSBWnlKfLRe3w %}
+- [Customized Git Logs](./_git-appendix-customized-logs.mdx)
+- [Commit Message Conventions](./_git-appendix-commit-conventions.mdx)
+- [`.gitignore` settings](./_git-appendix-gitignore-settings.mdx)
