@@ -31,7 +31,7 @@ export default GuideContainer;
 // *************************************************
 
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { getMdxFiles, getFileBySlug, FileBySlugResults } from '@mdlp/ssr';
+import { getMdxFiles, getFileBySlug, FileBySlugResults, SlugCategory } from '@mdlp/ssr';
 
 /**
  * Gather list of static pages to pre-generate
@@ -65,7 +65,7 @@ type ParamProps = { slug: string };
  * @param FileBySlugResults is the 'post' type
  */
 export const getStaticProps: GetStaticProps<FileBySlugResults, ParamProps> = async ({ params }) => {
-  const post = await getFileBySlug('guides', params.slug);
+  const post = await getFileBySlug(params.slug, SlugCategory.Guides);
 
   return { props: post };
 };
