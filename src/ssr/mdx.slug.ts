@@ -6,8 +6,9 @@ import mdxPrism from 'mdx-prism-2';
 import remarkSlug from 'remark-slug';
 import remarkCodeTitles from 'remark-code-titles';
 import rehypeHeadings from 'rehype-autolink-headings';
+import reactRenderToString from 'next-mdx-remote/render-to-string';
+
 import { MdxRemote } from 'next-mdx-remote/types';
-import renderToString from 'next-mdx-remote/render-to-string';
 
 import { MDXComponents } from '../shared/layouts/components/MDXComponents';
 import { MDX_ROOT_PATH } from './mdx.files';
@@ -25,19 +26,25 @@ export interface FileBySlugResults {
 }
 
 /**
- * Load MDX content by file in `<cwd>/<type>/<slug>.mdx`
+ *  What is the context/category for the Slug content
+ */
+export enum SlugCategory {
+  Unknown = '',
+  Guides = 'guides'
+}
+/**
+ * Load MDX content by file in `${path.cwd()}/<type>/<slug>.mdx`
  * Parse and render as HTML string
  *
- * @param type Directory segment
  * @param slug Filename (without suffix)
+ * @param type Directory segment
  */
-export async function getFileBySlug(type: string, slug: string): Promise<FileBySlugResults> {
-  let source = slug
-    ? fs.readFileSync(path.join(MDX_ROOT_PATH, type, `${slug}.mdx`), 'utf8')
-    : fs.readFileSync(path.join(MDX_ROOT_PATH, `${type}.mdx`), 'utf8');
+export async function getFileBySlug(slug: string, type = SlugCategory.Unknown): Promise<FileBySlugResults> {
+  const srcPath = path.join(MDX_ROOT_PATH, type, `${slug}.mdx`);
+  const source = fixInvalidMarkdown(fs.readFileSync(srcPath, 'utf8'));
+  const { data, content }: matter.GrayMatterFile<string> = matter(source);
 
-  const { data, content }: matter.GrayMatterFile<string> = matter(fixInvalidMarkdown(source));
-  const mdxSource = await renderToString(content, {
+  const mdxSource = await reactRenderToString(content, {
     components: MDXComponents(slug),
     mdxOptions: {
       remarkPlugins: [remarkSlug, remarkCodeTitles],
@@ -46,7 +53,7 @@ export async function getFileBySlug(type: string, slug: string): Promise<FileByS
   });
 
   return {
-    mdxSource,
+    mdxSource, // Static render-now verison + render-later, rehydratable version
     frontMatter: {
       wordCount: content.split(/\s+/gu).length,
       slug: slug || null,

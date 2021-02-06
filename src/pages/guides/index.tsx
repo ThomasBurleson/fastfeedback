@@ -15,11 +15,11 @@ type GuideProps = InferGetStaticPropsType<typeof getStaticProps>;
  */
 export default function Guides({ guides }: GuideProps) {
   return (
-    <div className="prose lg:prose-xl dark:prose-dark max-w-none m-auto w-2/3">
+    <div className="prose dark:prose-dark max-w-none m-auto w-2/3">
       <div className="flow-root">
         <ul className="-mb-8">
-          {guides.map((url, index) => {
-            const slug = `/guides/${url.replace(/\.mdx?/, '')}`;
+          {guides.map(({ slug, title, description, author, createdOn }, index) => {
+            const url = `/guides/${slug.replace(/\.mdx?/, '')}`;
             return (
               <li key={index}>
                 <div className="relative pb-8">
@@ -35,14 +35,19 @@ export default function Guides({ guides }: GuideProps) {
                     </div>
                     <div className="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                       <div>
-                        <p className="text-sm text-gray-500">
-                          <Link href={`${slug}`}>
-                            <a className="font-medium text-gray-900">{url}</a>
+                        <p className="text-sm text-gray-500" style={{ marginTop: '-5px;' }}>
+                          <Link href={`${url}`}>
+                            <a className="text-lg font-medium text-gray-900">{title}</a>
                           </Link>
                         </p>
+                        <p className="font-medium text-gray-600">{description}</p>
                       </div>
                       <div className="text-right text-sm whitespace-nowrap text-gray-500">
-                        <time dateTime="2021-02-02">Feb 02, 2021</time>
+                        <time dateTime={createdOn}>{createdOn}</time>
+                        <p className="text-blue-400" style={{ marginTop: '-5px;' }}>
+                          {' '}
+                          {author}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -63,10 +68,10 @@ export default function Guides({ guides }: GuideProps) {
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
 
-import { getMdxFiles } from '@mdlp/ssr';
+import { getAllFilesFrontMatter, SlugInfo } from '@mdlp/ssr';
 
 // Expected props type
-type GetStaticPropResults = { guides: string[] };
+type GetStaticPropResults = { guides: SlugInfo[] };
 
 /**
  * Get the frontmatter and mdx content associated with
@@ -75,7 +80,7 @@ type GetStaticPropResults = { guides: string[] };
  * @param FileBySlugResults is the 'post' type
  */
 export const getStaticProps: GetStaticProps<GetStaticPropResults> = async () => {
-  let guides = await getMdxFiles('data/guides');
+  let guides = await getAllFilesFrontMatter('guides');
 
   return { props: { guides } };
 };
