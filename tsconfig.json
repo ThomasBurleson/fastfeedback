@@ -4,8 +4,14 @@
     "baseUrl": "./src",
     "sourceMap": true,
     "importHelpers": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "typeRoots": ["node_modules/@types"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "types": [],
     "allowJs": true,
     "strict": false,
@@ -21,15 +27,36 @@
     "skipDefaultLibCheck": true,
     "target": "es2015",
     "paths": {
-      "@mdlp/styles": ["shared/styles/index.css"],
-      "@mdlp/auth-api": ["shared/auth-api/index.ts"],
-      "@mdlp/auth-ui": ["shared/auth-ui/index.ts"],
-      "@mdlp/layouts": ["shared/layouts/index.ts"],
-      "@mdlp/ssr": ["ssr/index.ts"],
-      "@mdlp/ui": ["components/index.ts"],
-      "@mdlp/motion": ["shared/motion/index.ts"]
+      "@mdlp/styles": [
+        "shared/styles/index.css"
+      ],
+      "@mdlp/auth-api": [
+        "shared/auth-api/index.ts"
+      ],
+      "@mdlp/auth-ui": [
+        "shared/auth-ui/index.ts"
+      ],
+      "@mdlp/layouts": [
+        "shared/layouts/index.ts"
+      ],
+      "@mdlp/ssr": [
+        "ssr/index.ts"
+      ],
+      "@mdlp/ui": [
+        "components/index.ts"
+      ],
+      "@mdlp/motion": [
+        "shared/motion/index.ts"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/markdown/download-img.js"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "scripts/markdown/download-img.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
